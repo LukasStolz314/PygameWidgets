@@ -10,6 +10,8 @@ class GearWidget(Widget):
 
     def draw(this, value):
         super().draw()
+
+        # Sets the text for the gear label
         text = ''
         if value == 0:
             text = 'N'
@@ -17,8 +19,11 @@ class GearWidget(Widget):
             text = 'R'
         else:
             text = str(value)
+        
+        # Creates the label
         draw_text = pygame.font.SysFont('comicsans', this.fontSize).render(
             text, 1, this.foregroundColor)
         this.window.blit(draw_text, (
             this.x + this.w//2 - draw_text.get_width()//2, this.y + this.h//2 - draw_text.get_height()//2))
+            
         pygame.display.update()
