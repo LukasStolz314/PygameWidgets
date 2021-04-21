@@ -1,6 +1,6 @@
 import pygame
 from pygame import Rect
-from .widget import Widget
+from .Widget import Widget
 
 GREEN = (0, 255, 0)
 WHITE = (255, 255, 255)
@@ -8,7 +8,7 @@ WHITE = (255, 255, 255)
 LINE_COUNT = 15
 LINE_PADDING = 10
 
-class EngineSpeedWidget(Widget):
+class ThrottleBar(Widget):
 
     def __init__(this, window, x, y, w, h, backgroundColor):
         super().__init__(window, x, y, w, h, backgroundColor)
@@ -18,7 +18,7 @@ class EngineSpeedWidget(Widget):
         super().draw()
 
         # Returns count of green rectangles
-        count = EngineSpeedWidget.getEngineSpeedLineCount(value)
+        count = ThrottleWidget.getThrottleLineCount(value)
 
         # Draw all green rectangles
         for filledLines in range(count):
@@ -32,7 +32,7 @@ class EngineSpeedWidget(Widget):
             rect = Rect(this.x, yPosition, this.w, this.lineSize)
             pygame.draw.rect(this.window, WHITE, rect)
 
-        pygame.display.update()
+        return (this.x, this.y, this.w, this.h)
     
-    def getEngineSpeedLineCount(value):
+    def getThrottleLineCount(value):
         return int(value / 1000)

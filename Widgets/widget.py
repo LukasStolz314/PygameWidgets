@@ -8,8 +8,7 @@ class Widget():
         this.y = y
         this.w = w
         this.h = h
-        this.rect = pygame.Rect(x, y, w, h)
         this.backgroundColor = backgroundColor
 
     def draw(this):
-        pygame.draw.rect(this.window, this.backgroundColor, this.rect)
+        pass
