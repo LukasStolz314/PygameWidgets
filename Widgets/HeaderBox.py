@@ -8,21 +8,22 @@ GREY = (107, 107, 107)
 class HeaderBox(Widget):
 
     def __init__(this, window, x, y, w, h, backgroundColor, foregroundColor,\
-            borderThickness = 2, padding = 5, fontSize = 35):
+            values, borderThickness = 2, padding = 5, fontSize = 35):
         super().__init__(window, x, y, w, h, backgroundColor)
         this.foregroundColor = foregroundColor
+        this.values = values
         this.borderThickness = borderThickness
         this.padding = padding
         this.fontSize = fontSize
         this.font = pygame.font.SysFont('century gothic', int(fontSize//1.229))
 
 
-    def draw(this, headerValue, topValues, bottomValues):
+    def draw(this):
         super().draw()
         
-        this.drawHeader(headerValue)
+        this.drawHeader(this.values[0])
         this.drawBox()
-        this.drawBoxValues(topValues, bottomValues)
+        this.drawBoxValues(this.values[1], this.values[2])
         return (this.x, this.y, this.w, this.h)
 
     def drawHeader(this, headerValue):
