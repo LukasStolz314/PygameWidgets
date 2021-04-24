@@ -4,11 +4,11 @@ from pygame import Rect
 
 class Label(Widget):
     
-    def __init__(this, window, x, y, w, h, backgroundColor, foregroundColor, values, fontSize = 20):
+    def __init__(this, window, x, y, w, h, backgroundColor, foregroundColor, values):
         super().__init__(window, x, y, w, h, backgroundColor)
         this.foregroundColor = foregroundColor
         this.values = values
-        this.font = pygame.font.SysFont('century gothic', fontSize)
+        this.font = pygame.font.SysFont('century gothic', int(h/1.229))
 
     def draw(this):
         super().draw()
@@ -20,7 +20,7 @@ class Label(Widget):
             labelText = this.font.render(this.values, 1, this.foregroundColor)
 
             x = this.x - labelText.get_width()//2
-            y = this.y - labelText.get_height()//2
+            y = this.y
 
             this.window.blit(labelText, (x, y))
 
@@ -28,7 +28,7 @@ class Label(Widget):
 
     def drawWithBackground(this):
         # Draw background
-        x, y = this.x - this.w//2, this.y - this.h//2
+        x, y = this.x - this.w//2, this.y
         w, h = this.w, this.h
 
         headerRect = Rect(x, y, w, h)
@@ -38,7 +38,7 @@ class Label(Widget):
         labelText = this.font.render(this.values[0], 1, this.foregroundColor)
 
         x = this.x - labelText.get_width()//2
-        y = this.y - headerRect.size[1]//2
+        y = this.y
 
         this.window.blit(labelText, (x, y))
 

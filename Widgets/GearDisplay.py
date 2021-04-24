@@ -5,12 +5,12 @@ from pygame import Rect
 class GearDisplay(Widget):
     
     def __init__(this, window, x, y, w, h, backgroundColor, foregroundColor,\
-        value, padding = 0, fontSize = 20):
+        value, padding = 0):
         super().__init__(window, x, y, w, h, backgroundColor)
         this.value = value
         this.foregroundColor = foregroundColor
         this.padding = padding
-        this.font = pygame.font.SysFont('century gothic', int(fontSize//1.229))
+        this.font = pygame.font.SysFont('century gothic', int(h*2.222))
         
     def draw(this):
         super().draw()
