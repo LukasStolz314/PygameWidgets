@@ -10,7 +10,7 @@ class GearDisplay(Widget):
         this.value = value
         this.foregroundColor = foregroundColor
         this.padding = padding
-        this.font = pygame.font.SysFont('century gothic', int(h*2.222))
+        this.font = pygame.font.SysFont('arial', int(h*2.222))
         
     def draw(this):
         super().draw()
