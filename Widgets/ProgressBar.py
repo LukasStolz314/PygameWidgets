@@ -2,8 +2,9 @@ import pygame
 from .Widget import Widget
 from pygame import Rect
 
+
 class ProgressBar(Widget):
-    
+
     def __init__(this, window, x, y, w, h, backgroundColor, foregroundColor, values):
         super().__init__(window, x, y, w, h, backgroundColor)
         this.foregroundColor = foregroundColor
@@ -16,7 +17,7 @@ class ProgressBar(Widget):
         x, y = this.x - this.w//2, this.y - this.h//2
         w, h = this.w, this.h
         borderRect = Rect(x, y, w, h)
-        pygame.draw.rect(this.window, this.foregroundColor, borderRect, 2, 3)
+        pygame.draw.rect(this.window, this.foregroundColor, borderRect, 2)
 
         # Draw Progress
         x, y = this.x - this.w//2, this.y - this.h//2
