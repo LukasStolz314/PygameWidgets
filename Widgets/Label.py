@@ -8,7 +8,7 @@ class Label(Widget):
         super().__init__(window, x, y, w, h, backgroundColor)
         this.foregroundColor = foregroundColor
         this.values = values
-        this.font = pygame.font.Font('Utils/Fonts/ZenDots-Regular.ttf', int(h/1.229))
+        this.font = pygame.font.Font('PygameWidgets/Fonts/ZenDots-Regular.ttf', int(h/1.229))
 
     def draw(this):
         super().draw()

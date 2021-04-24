@@ -15,7 +15,7 @@ class HeaderBox(Widget):
         this.borderThickness = borderThickness
         this.padding = padding
         this.fontSize = fontSize
-        this.font = pygame.font.SysFont('century gothic', int(fontSize//1.229))
+        this.font = pygame.font.Font('PygameWidgets/Fonts/ZenDots-Regular.ttf', int(fontSize//1.229))
 
 
     def draw(this):
