@@ -2,9 +2,8 @@ import pygame
 
 class Page:
 
-    def __init__(this, window, name, widgetList):
+    def __init__(this, window, widgetList):
         this.window = window
-        this.name = name
         this.widgetList = widgetList
     
     def addWidget(this, widget):
