@@ -13,3 +13,7 @@ class Widget():
 
     def draw(this):
         pass
+
+    def update(this):
+        pass
+
