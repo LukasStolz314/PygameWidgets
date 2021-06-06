@@ -18,6 +18,7 @@ class UpdateWidget(Widget):
             this.value = vars(this.packetreader)[this.valuePointer]
         else:
             counter = 0
+            this.value = [None]*5
             for val in this.valuePointer:
+                this.value[counter] = vars(this.packetreader)[val]
                 counter += 1
-                this.value[counter] = vars(this.packetreader)[this.valuePointer[counter]]
