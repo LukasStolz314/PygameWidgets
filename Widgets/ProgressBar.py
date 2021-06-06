@@ -1,14 +1,14 @@
+from PygameWidgets.Widgets.UpdateWidget import UpdateWidget
 import pygame
-from .Widget import Widget
+from .UpdateWidget import UpdateWidget
 from pygame import Rect
 
 
-class ProgressBar(Widget):
+class ProgressBar(UpdateWidget):
 
-    def __init__(this, window, x, y, w, h, backgroundColor, foregroundColor, values):
-        super().__init__(window, x, y, w, h, backgroundColor)
+    def __init__(this, window, x, y, w, h, backgroundColor, foregroundColor, valuePointer, packetreader):
+        super().__init__(window, x, y, w, h, backgroundColor, valuePointer, packetreader)
         this.foregroundColor = foregroundColor
-        this.values = values
 
     def draw(this):
         super().draw()
@@ -21,7 +21,7 @@ class ProgressBar(Widget):
 
         # Draw Progress
         x, y = this.x - this.w//2, this.y - this.h//2
-        w, h = this.w/100 * this.values, this.h
+        w, h = this.w/100 * this.value, this.h
         progressRect = Rect(x, y, w, h)
         pygame.draw.rect(this.window, this.foregroundColor, progressRect, 0, 10)
 

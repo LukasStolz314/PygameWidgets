@@ -21,9 +21,9 @@ class HeaderBox(UpdateWidget):
     def draw(this):
         super().draw()
         
-        this.drawHeader(this.value[0])
+        this.drawHeader(str(this.value[0]))
         this.drawBox()
-        this.drawBoxValues(this.value[1], this.value[2])
+        this.drawBoxValues((str(this.value[1]), str(this.value[2])),(str(this.value[3]), str(this.value[4])))
         return (this.x, this.y, this.w, this.h)
         
 

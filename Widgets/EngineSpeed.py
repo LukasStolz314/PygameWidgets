@@ -1,14 +1,14 @@
 import pygame
 import Utils.Colors as Colors
-from .Widget import Widget
+from .UpdateWidget import UpdateWidget
 
-class EngineSpeed(Widget):
+class EngineSpeed(UpdateWidget):
     
-    def __init__(this, window, x, y, w, h, value):
-        super().__init__(window, x, y, w, h, None)
-        this.value = value
+    def __init__(this, window, x, y, w, h, valuePointer, packetreader):
+        super().__init__(window, x, y, w, h, None, valuePointer, packetreader)
     
     def draw(this):
+        super().draw()
         for count in range(0, this.value):
             color = Colors.WHITE
             if count > 4 and count <= 9:

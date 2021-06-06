@@ -10,16 +10,15 @@ LINE_PADDING = 10
 
 class ThrottleBar(Widget):
 
-    def __init__(this, window, x, y, w, h, backgroundColor, values):
-        super().__init__(window, x, y, w, h, backgroundColor)
+    def __init__(this, window, x, y, w, h, backgroundColor, valuePointer, packetreader):
+        super().__init__(window, x, y, w, h, backgroundColor, valuePointer, packetreader)
         this.lineSize = (this.h - LINE_COUNT * LINE_PADDING) / LINE_COUNT
-        this.values = values
 
     def draw(this):
         super().draw()
 
         # Returns count of green rectangles
-        count = ThrottleWidget.getThrottleLineCount(values[0])
+        count = ThrottleBar.getThrottleLineCount()
 
         # Draw all green rectangles
         for filledLines in range(count):
@@ -35,5 +34,5 @@ class ThrottleBar(Widget):
 
         return (this.x, this.y, this.w, this.h)
     
-    def getThrottleLineCount(value):
-        return int(value / 1000)
+    def getThrottleLineCount(this):
+        return int(this.value / 1000)
