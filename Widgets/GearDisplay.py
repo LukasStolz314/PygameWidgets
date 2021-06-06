@@ -1,13 +1,12 @@
 import pygame
-from .Widget import Widget
+from .UpdateWidget import UpdateWidget
 from pygame import Rect
 
-class GearDisplay(Widget):
+class GearDisplay(UpdateWidget):
     
     def __init__(this, window, x, y, w, h, backgroundColor, foregroundColor,\
-        value, padding = 0):
-        super().__init__(window, x, y, w, h, backgroundColor)
-        this.value = value
+        valuePointer, packetreader, padding = 0,):
+        super().__init__(window, x, y, w, h, backgroundColor, valuePointer, packetreader)
         this.foregroundColor = foregroundColor
         this.padding = padding
         this.font = pygame.font.Font('PygameWidgets/Fonts/ZenDots-Regular.ttf', int(h*2.229))
@@ -33,3 +32,6 @@ class GearDisplay(Widget):
         this.window.blit(draw_text, (x, y))
 
         return (this.x, this.y, draw_text.get_width(), draw_text.get_height())
+
+    def update(this):
+        super().update()

@@ -1,17 +1,17 @@
+from PygameWidgets.Widgets.UpdateWidget import UpdateWidget
 import pygame
-from .Widget import Widget
+from .UpdateWidget import UpdateWidget
 from pygame import Rect
 
 GREY = (107, 107, 107)
 
 
-class HeaderBox(Widget):
+class HeaderBox(UpdateWidget):
 
     def __init__(this, window, x, y, w, h, backgroundColor, foregroundColor,\
-            values, borderThickness = 2, padding = 5, fontSize = 35):
-        super().__init__(window, x, y, w, h, backgroundColor)
+            valuePointer, packetreader, borderThickness = 2, padding = 5, fontSize = 35):
+        super().__init__(window, x, y, w, h, backgroundColor, valuePointer, packetreader)
         this.foregroundColor = foregroundColor
-        this.values = values
         this.borderThickness = borderThickness
         this.padding = padding
         this.fontSize = fontSize
@@ -21,10 +21,11 @@ class HeaderBox(Widget):
     def draw(this):
         super().draw()
         
-        this.drawHeader(this.values[0])
+        this.drawHeader(str(this.value[0]))
         this.drawBox()
-        this.drawBoxValues(this.values[1], this.values[2])
+        this.drawBoxValues((str(this.value[1]), str(this.value[2])),(str(this.value[3]), str(this.value[4])))
         return (this.x, this.y, this.w, this.h)
+        
 
     def drawHeader(this, headerValue):
         # Draw header rect
