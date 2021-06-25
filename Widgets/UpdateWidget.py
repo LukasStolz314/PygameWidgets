@@ -19,6 +19,12 @@ class UpdateWidget(Widget):
         else:
             counter = 0
             this.value = [None]*5
-            for val in this.valuePointer:
-                this.value[counter] = vars(this.packetreader)[val]
-                counter += 1
+            for value in this.valuePointer:
+                package = vars(this.packetreader)[value]
+                if(isinstance(package, tuple)):
+                    for item in package:
+                        this.value[counter] = item
+                        counter += 1
+                else:
+                    this.value[counter] = package
+                    counter += 1
