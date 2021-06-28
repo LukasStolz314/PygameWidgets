@@ -21,7 +21,7 @@ class ProgressBar(UpdateWidget):
 
         # Draw Progress
         x, y = this.x - this.w//2, this.y - this.h//2
-        w, h = this.w/100 * this.value, this.h
+        w, h = this.w/100 * this.value//40000, this.h
         progressRect = Rect(x, y, w, h)
         pygame.draw.rect(this.window, this.foregroundColor, progressRect, 0, 10)
 
