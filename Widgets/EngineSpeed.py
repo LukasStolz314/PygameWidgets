@@ -9,7 +9,7 @@ class EngineSpeed(UpdateWidget):
     
     def draw(this):
         super().draw()
-        for count in range(0, this.value):
+        for count in range(0, this.value//1000):
             color = Colors.WHITE
             if count > 4 and count <= 9:
                 color = Colors.RED
@@ -24,7 +24,7 @@ class EngineSpeed(UpdateWidget):
 
             pygame.draw.circle(this.window, color, (this.x + (100*count), y), 25)
         
-        for count in range (this.value, 15):
+        for count in range (this.value//1000, 15):
             if count > 4 and count <= 9:
                 y = this.y - 5
             elif count > 9 and count <= 15: 
