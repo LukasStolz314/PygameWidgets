@@ -15,7 +15,7 @@ class UpdateWidget(Widget):
 
     def update(this):
         if isinstance(this.valuePointer, str):
-            this.value = vars(this.packetreader)[this.valuePointer]
+            this.value = round(vars(this.packetreader)[this.valuePointer], 3)
         else:
             counter = 0
             this.value = [None]*5
@@ -23,7 +23,7 @@ class UpdateWidget(Widget):
                 package = vars(this.packetreader)[value]
                 if(isinstance(package, tuple)):
                     for item in package:
-                        this.value[counter] = item
+                        this.value[counter] = round(item, 3)
                         counter += 1
                 else:
                     this.value[counter] = package
