@@ -21,9 +21,9 @@ class UpdateWidget(Widget):
             this.value = [None]*5
             for value in this.valuePointer:
                 package = vars(this.packetreader)[value]
-                if(isinstance(package, tuple)):
+                if package and not isinstance(package, int) and not isinstance(package, float):
                     for item in package:
-                        this.value[counter] = round(item, 3)
+                        this.value[counter] = item
                         counter += 1
                 else:
                     this.value[counter] = package
