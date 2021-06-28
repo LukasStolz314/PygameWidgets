@@ -23,7 +23,7 @@ class HeaderBox(UpdateWidget):
         
         this.drawHeader(str(this.value[0]))
         this.drawBox()
-        this.drawBoxValues((str(this.value[1]), str(this.value[2])),(str(this.value[3]), str(this.value[4])))
+        this.drawBoxValues((str(this.value[3]), str(this.value[4])), (str(this.value[1]), str(this.value[2])))
         return (this.x, this.y, this.w, this.h)
         
 
@@ -63,8 +63,10 @@ class HeaderBox(UpdateWidget):
     def drawBoxValues(this, topValues, bottomValues):
 
         #Draw Top-Left text
-        topLeftText = this.font.render(topValues[0], 1, this.foregroundColor)
-
+        if not topValues[0] == None:
+            topLeftText = this.font.render(topValues[0], 1, this.foregroundColor)
+        else :
+            topLeftText = this.font.render("0", 1, this.foregroundColor)
         x = this.x + this.borderThickness + this.padding
         y = this.y + this.h//3 - this.padding
 
@@ -77,7 +79,10 @@ class HeaderBox(UpdateWidget):
         this.window.blit(topLeftText, (x, y))
         
         #Draw Bottom-Left text
-        bottomLeftText = this.font.render(bottomValues[0], 1, this.foregroundColor)
+        if not bottomValues[0] == None:
+            bottomLeftText = this.font.render(bottomValues[0], 1, this.foregroundColor)
+        else :
+            bottomLeftText = this.font.render("0", 1, this.foregroundColor)
 
         x = this.x + this.borderThickness + this.padding
         y = this.y + this.h - bottomLeftText.get_height() + 2 - this.padding
@@ -85,7 +90,10 @@ class HeaderBox(UpdateWidget):
         this.window.blit(bottomLeftText, (x, y))
 
         #Draw Top-Right text
-        topRightText = this.font.render(topValues[1], 1, this.foregroundColor)
+        if not topValues[1] == None:
+            topRightText = this.font.render(topValues[1], 1, this.foregroundColor)
+        else :
+            topRightText = this.font.render("0", 1, this.foregroundColor)
 
         x = this.x + this.w - topRightText.get_width() - this.padding - this.borderThickness
         y = this.y + this.h//3 - this.padding
@@ -93,7 +101,10 @@ class HeaderBox(UpdateWidget):
         this.window.blit(topRightText, (x, y))
 
         #Draw Bottom-Right text
-        bottomRightText = this.font.render(bottomValues[1], 1, this.foregroundColor)
+        if not bottomValues[1] == None:
+            bottomRightText = this.font.render(bottomValues[1], 1, this.foregroundColor)
+        else :
+            bottomRightText = this.font.render("0", 1, this.foregroundColor)
 
         x = this.x + this.w - bottomRightText.get_width() \
             - this.padding - this.borderThickness
