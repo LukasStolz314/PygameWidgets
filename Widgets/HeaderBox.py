@@ -1,5 +1,6 @@
 from PygameWidgets.Widgets.UpdateWidget import UpdateWidget
 import pygame
+from datetime import *
 from .UpdateWidget import UpdateWidget
 from pygame import Rect
 
@@ -9,12 +10,12 @@ GREY = (107, 107, 107)
 class HeaderBox(UpdateWidget):
 
     def __init__(this, window, x, y, w, h, backgroundColor, foregroundColor,\
-            valuePointer, packetreader, borderThickness = 2, padding = 5, fontSize = 35):
+            valuePointer, packetreader, borderThickness = 2, fontSize = 35, isTime = False):
         super().__init__(window, x, y, w, h, backgroundColor, valuePointer, packetreader)
         this.foregroundColor = foregroundColor
         this.borderThickness = borderThickness
-        this.padding = padding
         this.fontSize = fontSize
+        this.isTime = isTime
         this.font = pygame.font.Font('PygameWidgets/Fonts/ZenDots-Regular.ttf', int(fontSize//1.229))
 
 
@@ -23,9 +24,8 @@ class HeaderBox(UpdateWidget):
         
         this.drawHeader(str(this.value[0]))
         this.drawBox()
-        this.drawBoxValues((str(this.value[3]), str(this.value[4])), (str(this.value[1]), str(this.value[2])))
+        this.drawBoxValues(str(this.value[3]), str(this.value[4]), str(this.value[1]), str(this.value[2]))
         return (this.x, this.y, this.w, this.h)
-        
 
     def drawHeader(this, headerValue):
         # Draw header rect
@@ -33,6 +33,11 @@ class HeaderBox(UpdateWidget):
 
         headerRect = Rect(x, y, w, h)
         pygame.draw.rect(this.window, GREY, headerRect)
+
+        if(this.isTime):
+            date_time = datetime.fromtimestamp(int(headerValue))
+            micro = int(date_time.strftime("%f"))//1000
+            headerValue = date_time.strftime("%M:%S") + ":" + str(micro)
         
         # Draw text
         headerText = this.font.render(headerValue, 1, this.foregroundColor)
@@ -60,55 +65,44 @@ class HeaderBox(UpdateWidget):
         pygame.draw.rect(this.window, this.backgroundColor, boxRect)
 
     
-    def drawBoxValues(this, topValues, bottomValues):
+    def drawBoxValues(this, topLeft, topRight, bottomLeft, bottomRight):
 
         #Draw Top-Left text
-        if not topValues[0] == None:
-            topLeftText = this.font.render(topValues[0], 1, this.foregroundColor)
-        else :
-            topLeftText = this.font.render("0", 1, this.foregroundColor)
-        x = this.x + this.borderThickness + this.padding
-        y = this.y + this.h//3 - this.padding
+        topLeftText = this.font.render(topLeft, 1, this.foregroundColor)
+        
+        x = this.x + this.borderThickness + 5
+        y = this.y + this.h//3 - 5
 
         fSize = this.fontSize
         while topLeftText.get_width() > (this.w - this.borderThickness*2)/2:
             fSize -= 10
             this.font = pygame.font.SysFont('century gothic', int(fSize//1.229))
-            topLeftText = this.font.render(topValues[0], 1, this.foregroundColor)   
+            topLeftText = this.font.render(topLeft, 1, this.foregroundColor)   
             
         this.window.blit(topLeftText, (x, y))
         
         #Draw Bottom-Left text
-        if not bottomValues[0] == None:
-            bottomLeftText = this.font.render(bottomValues[0], 1, this.foregroundColor)
-        else :
-            bottomLeftText = this.font.render("0", 1, this.foregroundColor)
+        bottomLeftText = this.font.render(bottomLeft, 1, this.foregroundColor)
 
-        x = this.x + this.borderThickness + this.padding
-        y = this.y + this.h - bottomLeftText.get_height() + 2 - this.padding
+        x = this.x + this.borderThickness + 5
+        y = this.y + this.h - bottomLeftText.get_height() + 2 - 5
 
         this.window.blit(bottomLeftText, (x, y))
 
         #Draw Top-Right text
-        if not topValues[1] == None:
-            topRightText = this.font.render(topValues[1], 1, this.foregroundColor)
-        else :
-            topRightText = this.font.render("0", 1, this.foregroundColor)
+        topRightText = this.font.render(topRight, 1, this.foregroundColor)
 
-        x = this.x + this.w - topRightText.get_width() - this.padding - this.borderThickness
-        y = this.y + this.h//3 - this.padding
+        x = this.x + this.w - topRightText.get_width() - 5 - this.borderThickness
+        y = this.y + this.h//3 - 5
 
         this.window.blit(topRightText, (x, y))
 
         #Draw Bottom-Right text
-        if not bottomValues[1] == None:
-            bottomRightText = this.font.render(bottomValues[1], 1, this.foregroundColor)
-        else :
-            bottomRightText = this.font.render("0", 1, this.foregroundColor)
+        bottomRightText = this.font.render(bottomRight, 1, this.foregroundColor)
 
         x = this.x + this.w - bottomRightText.get_width() \
-            - this.padding - this.borderThickness
+            - 5 - this.borderThickness
         y = this.y + this.h - bottomLeftText.get_height() + 2 \
-            - this.padding - this.borderThickness 
+            - 5 - this.borderThickness 
 
         this.window.blit(bottomRightText, (x, y))

@@ -25,6 +25,9 @@ class UpdateWidget(Widget):
                     for item in package:
                         this.value[counter] = item
                         counter += 1
-                else:
+                elif not package:
                     this.value[counter] = package
+                    counter += 1
+                else:
+                    this.value[counter] = round(package, 2)
                     counter += 1

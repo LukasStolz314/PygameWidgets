@@ -1,9 +1,11 @@
 from PygameWidgets.Widgets.UpdateWidget import UpdateWidget
 import pygame
+from datetime import *
 from .Widget import Widget
 from pygame import Rect
 
-class Label(UpdateWidget):
+
+class TimeLabel(UpdateWidget):
     
     def __init__(this, window, x, y, w, h, backgroundColor, foregroundColor, valuePointer, packetreader):
         super().__init__(window, x, y, w, h, backgroundColor, valuePointer, packetreader)
@@ -12,8 +14,9 @@ class Label(UpdateWidget):
 
     def draw(this):
         super().draw()
-        
-        labelText = this.font.render(str(this.value), 1, this.foregroundColor)
+        date_time = datetime.fromtimestamp(this.value)
+        micro = int(date_time.strftime("%f"))//1000
+        labelText = this.font.render(str(date_time.strftime("%M:%S") + ":" + str(micro)), 1, this.foregroundColor)
 
         x = this.x - labelText.get_width()//2
         y = this.y
