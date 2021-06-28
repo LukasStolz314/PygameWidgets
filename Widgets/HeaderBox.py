@@ -35,7 +35,7 @@ class HeaderBox(UpdateWidget):
         pygame.draw.rect(this.window, GREY, headerRect)
 
         if(this.isTime):
-            date_time = datetime.fromtimestamp(int(headerValue))
+            date_time = datetime.fromtimestamp(float(headerValue))
             micro = int(date_time.strftime("%f"))//1000
             headerValue = date_time.strftime("%M:%S") + ":" + str(micro)
         
