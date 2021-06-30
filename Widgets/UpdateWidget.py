@@ -18,7 +18,7 @@ class UpdateWidget(Widget):
             this.value = round(vars(this.packetreader)[this.valuePointer], 3)
         else:
             counter = 0
-            this.value = [None]*5
+            this.value = [None]*12
             for value in this.valuePointer:
                 package = vars(this.packetreader)[value]
                 if package and not isinstance(package, int) and not isinstance(package, float):

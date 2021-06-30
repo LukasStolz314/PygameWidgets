@@ -28,14 +28,16 @@ class Tyre(UpdateWidget):
         if this.wheel == 'FR':
             wheelIndex = 3
 
-        #per = this.value[wheelIndex] # Percentage of the tyre wear
-        #innerTemp = this.value[wheelIndex + 1]
-        #surfaceTemp = this.value[wheelIndex + 2]
+        per = this.value[wheelIndex] # Percentage of the tyre wear
+        innerTemp = this.value[wheelIndex + 4]
+        surfaceTemp = this.value[wheelIndex + 8]
 
-        per = 10 # dummy percentage
-        innerTemp = 62
-        surfaceTemp = 222
-
+        if not per:
+            per = 0
+        if not innerTemp:
+            innerTemp = 0
+        if not surfaceTemp:
+            surfaceTemp = 0
 
         tyreColor = (round(255 * per/100), round(255 - (255 * per/100)), 0) # Setting the tyre color dynamically for the wear
         lineColor = Colors.WHITE # Color for the lines
